@@ -1,11 +1,12 @@
 defmodule Aleph.Entities do
   require Logger
   
+  alias Aleph.VocabluaryTrie
+  
   @min_word_length 4
   
-  @stwvoc Porphyr.VocabluaryTrie.get_vocabluary(:stw)  
-  @swpvoc Porphyr.VocabluaryTrie.get_vocabluary(:swp)
-  @ccsvoc Porphyr.VocabluaryTrie.get_vocabluary(:ccs)
+  @stwvoc VocabluaryTrie.get_vocabluary(:stw)  
+  @ccsvoc VocabluaryTrie.get_vocabluary(:ccs)
   # does not work as module attribute - why?
   # @marks_pattern :binary.compile_pattern([".", ",", ":", ";", "!", "?", "\n", "(", ")", "'", "\"", "\t"])
 
@@ -91,13 +92,6 @@ defmodule Aleph.Entities do
   def get(text, :stw) do
     get(text, @stwvoc)
   end
-  
-  @doc """
-  Calls the generic get with swp-vocabluary.
-  """
-  def get(text, :swp) do
-    get(text, @swpvoc)
-  end
     
   @doc """
   Calls the generic get with swp-vocabluary.
@@ -116,24 +110,6 @@ defmodule Aleph.Entities do
     text
     |> prep_text
     |> detect(vocabluary, [])
-  end
-  
-  @doc """
-  Scheduler interface for the get-method.
-  """
-  def get(scheduler) do
-    send scheduler, { :ready, self }
-    
-    receive do
-      { :process, data_link, out_fun, vocabluary } ->      
-        result = File.read!(data_link)
-        |> get(vocabluary)
-        |> out_fun.(data_link)
-        
-        get(scheduler)
-      { :shutdown } ->
-        exit(:normal)
-    end
   end
 
 end

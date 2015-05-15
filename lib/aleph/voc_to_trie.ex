@@ -1,6 +1,8 @@
-defmodule Porphyr.VocabluaryTrie do
+defmodule Aleph.VocabluaryTrie do
   require Logger
-  alias Porphyr.ParseVocabluary
+  
+  alias Aleph.ParseVocabluary
+  alias Aleph.ParseTurtle
   
   @length_threshold 1
   
@@ -14,17 +16,12 @@ defmodule Porphyr.VocabluaryTrie do
   end
 
   def get_vocabluary(:stw) do
-    Porphyr.ParseTurtle.run("stw.ttl")
-    |> get_vocabluary
-  end
-
-  def get_vocabluary(:swp) do
-    Porphyr.ParseNTriple.run("swp.nt")
+    ParseTurtle.run("stw.ttl")
     |> get_vocabluary
   end
   
   def get_vocabluary(:ccs) do
-    Porphyr.ParseTurtle.run("ccs.ttl")
+    ParseTurtle.run("ccs.ttl")
     |> get_vocabluary
   end
   

@@ -25,6 +25,8 @@ defmodule Aleph.Mixfile do
   #
   # Type `mix help deps` for more examples and options
   defp deps do
-    []
+    [
+      {:trie, git: "https://github.com/okeuday/trie"}
+    ]
   end
 end

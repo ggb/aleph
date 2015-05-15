@@ -1,6 +1,7 @@
-defmodule Porphyr.ParseNTriple do
+defmodule Aleph.ParseNTriple do
   require Logger
-  alias Porphyr.HierarchyNode
+  
+  alias Aleph.HierarchyNode
   
   @lang "en"
     
@@ -49,14 +50,7 @@ defmodule Porphyr.ParseNTriple do
       Dict.put_new(dict, identifier, update_helper(relation, value, %HierarchyNode{ identifier: identifier }) )
     end
   end
-  
-  def run(:swp) do
-    run("swp.nt")
-    # filter out empty nodes
-    |> Enum.filter(fn { _key, val } -> val.prefLabel != ""  end)
-    |> Enum.into(HashDict.new)
-  end
-  
+    
   def run(path) do
     path
     |> File.read!

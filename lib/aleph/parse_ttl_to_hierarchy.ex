@@ -1,6 +1,6 @@
-defmodule Porphyr.ParseTurtle do
+defmodule Aleph.ParseTurtle do
   require Logger
-  alias Porphyr.HierarchyNode
+  alias Aleph.HierarchyNode
   
   @lang "en"
   
