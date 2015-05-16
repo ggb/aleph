@@ -4,7 +4,7 @@
 
 It is necessary to read in the thesaurus as [SKOS](http://www.w3.org/2004/02/skos/) in n3- or turtle-format. The vocabluary is than transformed into a PATRICIA trie, using [this](https://github.com/okeuday/trie) excellent Erlang trie-implementation. Using a trie makes it unnecessary to further preprocess the input-text with stemming or lemmatization.
 
-The **aleph** comes with build-in support for two well documented and curated vocabluaries: The [Standard Thesaurus Wirtschaft (STW)](http://zbw.eu/stw/versions/latest/about) that includes terms to describe the domain of econmics and the [ACM Computer Classification System](http://www.acm.org/about/class/) which aims to describe the domain of computer science. 
+The **aleph** comes with build-in support for two well documented and curated vocabluaries: The [Standard Thesaurus Wirtschaft (STW)](http://zbw.eu/stw/versions/latest/about) that includes terms to describe the domain of economics and the [ACM Computer Classification System](http://www.acm.org/about/class/) which aims to describe the domain of computer science. 
 
 ## Examples
 
