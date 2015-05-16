@@ -5,3 +5,4 @@ erl_crash.dump
 *.ex~
 *.exs~
 *.gitignore~
+README.md~
