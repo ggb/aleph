@@ -71,8 +71,8 @@ defmodule Aleph.Entities do
     else
       # else: calculate the longest match
       { result_fst, result_scd } = longest_match(result)
-      # transform the result into a two element list of strings
-      hit = [ to_string(result_fst), to_string(result_scd) ]
+      # transform the result into a tuple
+      hit = { to_string(result_fst), to_string(result_scd) }
       # Logger.debug "#{result_fst}, #{result_scd}"
       
       # calculate the word-length of the hit and move the "window"
