@@ -15,25 +15,32 @@ Say, you would like to find all computer science related concepts that are menti
 ```bash
 iex(1)> firstParagraph = "Computer science is the scientific and practical approach..."
 iex(2)> Aleph.Entities.get(firstParagraph, :ccs) 
-[["design", "10011673"], ["theory of computation", "10003752"],
- ["spec", "10011242"], ["computer", "10003458"], ["automating", "10003569"],
- ["computer science", "10003521"], ["cell", "10011458"], ["memory", "10010607"],
- ["computer", "10003458"], ["procedures", "10011035"],
- ["computer science", "10003521"]]
+[{"design", "10011673"}, {"theory of computation", "10003752"},
+ {"spec", "10011242"}, {"computer", "10003458"}, {"automating", "10003569"},
+ {"computer science", "10003521"}, {"cell", "10011458"}, {"memory", "10010607"},
+ {"computer", "10003458"}, {"procedures", "10011035"},
+ {"computer science", "10003521"}]
 ```
 
-As you can see this results into a list of two-element lists, where the first element denotes the entity and the second element the concepts unique descriptor-id. To use the STW call the get-function in the following way: 
+As you can see this results into a list of tuples, where the first element denotes the entity and the second element the concepts unique descriptor-id. If you are only interested in the descriptors try this:
 
 ```bash
-iex(3)> Aleph.Entities.get(yourText, :stw)
+iex(3)> Aleph.Entities.get(firstParagraph, :ccs) |> Enum.map(fn { _syn, descriptor } -> descriptor end)
+["10011673", "10003752", "10011242", "10003458", ... ]
+```
+
+To use the STW call the get-function in the following way: 
+
+```bash
+iex(4)> Aleph.Entities.get(yourText, :stw)
 ```
 
 If you would like to use your own vocabluary, the following steps are required.
 
 ```bash
-iex(4)> voc = Aleph.ParseTurtle.run("yourVocabluary.ttl") # or: Aleph.ParseNTriple.run("yourVocabluary.n3")
-iex(5)> trie = trie = Aleph.VocabluaryTrie.get_vocabluary(voc)
-iex(6)> Aleph.Entities.get(yourText, trie)
+iex(5)> voc = Aleph.ParseTurtle.run("yourVocabluary.ttl") # or: Aleph.ParseNTriple.run("yourVocabluary.n3")
+iex(6)> trie = trie = Aleph.VocabluaryTrie.get_vocabluary(voc)
+iex(7)> Aleph.Entities.get(yourText, trie)
 ```
 
 
