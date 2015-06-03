@@ -16,12 +16,12 @@ defmodule Aleph.VocabluaryTrie do
   end
 
   def get_vocabluary(:stw) do
-    ParseTurtle.run("stw.ttl")
+    ParseTurtle.get("stw.ttl")
     |> get_vocabluary
   end
   
   def get_vocabluary(:ccs) do
-    ParseTurtle.run("ccs.ttl")
+    ParseTurtle.get("ccs.ttl")
     |> get_vocabluary
   end
   

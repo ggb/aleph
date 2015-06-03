@@ -2,9 +2,9 @@
 
 **aleph** is a module for vocabluary-based named entity recognition: You read in a hierarchal-organized vocabluary (i. e. a thesaurus) and a text and **aleph** tells you which entities and concepts from the vocabluary appear in the text. 
 
-It is necessary to read in the thesaurus as [SKOS](http://www.w3.org/2004/02/skos/) in n3- or turtle-format. The vocabluary is than transformed into a PATRICIA trie, using [this](https://github.com/okeuday/trie) excellent Erlang trie-implementation. Using a trie makes it unnecessary to further preprocess the input-text with stemming or lemmatization.
+It is necessary to read in the thesaurus as [SKOS](http://www.w3.org/2004/02/skos/) in n3- or turtle-format; **aleph** uses the [parseSKOS](http://github.com/ggb/parseSKOS)-module for this purpose. The vocabluary is than transformed into a PATRICIA trie, using [this](https://github.com/okeuday/trie) excellent Erlang trie-implementation. Using a trie makes it unnecessary to further preprocess the input-text with stemming or lemmatization.
 
-The **aleph** comes with build-in support for two well documented and curated vocabluaries: The [Standard Thesaurus Wirtschaft (STW)](http://zbw.eu/stw/versions/latest/about) that includes terms to describe the domain of economics and the [ACM Computer Classification System](http://www.acm.org/about/class/) which aims to describe the domain of computer science. 
+**parseSKOS** comes with build-in support for two well documented and curated vocabluaries: The [Standard Thesaurus Wirtschaft (STW)](http://zbw.eu/stw/versions/latest/about) that includes terms to describe the domain of economics and the [ACM Computer Classification System](http://www.acm.org/about/class/) which aims to describe the domain of computer science. 
 
 ## Examples
 
@@ -38,8 +38,8 @@ iex(4)> Aleph.Entities.get(yourText, :stw)
 If you would like to use your own vocabluary, the following steps are required.
 
 ```bash
-iex(5)> voc = Aleph.ParseTurtle.run("yourVocabluary.ttl") # or: Aleph.ParseNTriple.run("yourVocabluary.n3")
-iex(6)> trie = trie = Aleph.VocabluaryTrie.get_vocabluary(voc)
+iex(5)> voc = ParseSKOS.ParseTurtle.get("yourVocabluary.ttl") # or: Aleph.ParseNTriple.get("yourVocabluary.n3")
+iex(6)> trie = Aleph.VocabluaryTrie.get_vocabluary(voc)
 iex(7)> Aleph.Entities.get(yourText, trie)
 ```
 
