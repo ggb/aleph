@@ -1,7 +1,6 @@
 defmodule Aleph.VocabluaryTrie do
   require Logger
   
-  alias ParseSKOS.ParseVocabluary
   alias ParseSKOS.ParseTurtle
   
   @length_threshold 1

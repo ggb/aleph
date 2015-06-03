@@ -1,2 +1,2 @@
-%{"parseSKOS": {:git, "http://github.com/ggb/parseSKOS", "4a918e8e45a4d04199b035f6972388db60bd67f1", []},
+%{"parseSKOS": {:git, "http://github.com/ggb/parseSKOS", "aa33425dce131fe04fb29ff3a34b5a892ed2fd6f", []},
   "trie": {:git, "https://github.com/okeuday/trie", "3caff6461b28d77a12a5b67ebb4ef1023757713e", []}}
